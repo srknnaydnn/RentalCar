@@ -24,7 +24,7 @@ namespace Business.Concrete
             
 
                _carDal.Add(car);
-               return new SuccessResult(true, Message.AddSuccess);
+               return new SuccessResult(Message.AddSuccess);
           
         }
 
@@ -36,17 +36,17 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),true,"mesaj");
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),"mesaj");
         }
 
         public IDataResult<List<Car>> GetBrandById(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id),true,"mesaj");
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id),"mesaj");
         }
 
         public IDataResult<List<Car>> GetColorById(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p=>p.ColorId==id),true,"mesaj");
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p=>p.ColorId==id),"mesaj");
         }
 
         public IResult Update(Car car)

@@ -33,38 +33,38 @@ namespace Business.Concrete
             {
 
                 _carImagesDal.Add(carImages);
-                return new SuccessResult(true, Message.AddSuccessCarImages);
+                return new SuccessResult(Message.AddSuccessCarImages);
             }
-            return new ErrorResult(false, "Araba Resmi Eklenmedi");
+            return new ErrorResult("Araba Resmi Eklenmedi");
         }
 
         public IDataResult<List<CarImages>> GetAll()
         {
-            return new SuccessDataResult<List<CarImages>>(_carImagesDal.GetAll(), true, "Resimler Listelendi");
+            return new SuccessDataResult<List<CarImages>>(_carImagesDal.GetAll(), "Resimler Listelendi");
         }
 
         public IResult Delete(CarImages carImages)
         {
             _carImagesDal.Delete(carImages);
-            return new SuccessResult(true, "resim silindi");
+            return new SuccessResult("resim silindi");
         }
 
         public IResult Update(CarImages carImages)
         {
             _carImagesDal.Update(carImages);
-            return new SuccessResult(true, "resim güncellendi");
+            return new SuccessResult("resim güncellendi");
         }
 
         public IDataResult<CarImages> GetById(int id)
         {
-            return new SuccessDataResult<CarImages>(_carImagesDal.Get(p => p.CarId == id), true, "listelendi");
+            return new SuccessDataResult<CarImages>(_carImagesDal.Get(p => p.CarId == id), "listelendi");
         }
         private IResult CheckIfCarImagesLimited(int carId)
         {
             var result = _carImagesDal.GetAll(p => p.CarId == carId).Count;
             if (result > 5)
             {
-                return new ErrorResult(false, Message.CarImagesLimited);
+                return new ErrorResult(Message.CarImagesLimited);
             }
             return new SuccessResult();
         }
@@ -83,7 +83,7 @@ namespace Business.Concrete
             catch (Exception exception)
             {
 
-                return new ErrorDataResult<CarImages>(false,exception.Message);
+                return new ErrorDataResult<CarImages>(exception.Message);
             }
 
             return new SuccessDataResult<CarImages>(new CarImages
@@ -92,7 +92,7 @@ namespace Business.Concrete
                 CarId = carImages.CarId,
                 ImagePath = result,
                 Date = DateTime.Now,
-            }, true);
+            });
 
         }
         private IDataResult<CarImages> UpdateFile(CarImages carImages)
@@ -109,7 +109,7 @@ namespace Business.Concrete
                 CarId = carImages.CarId,
                 ImagePath = result,
                 Date = DateTime.Now,
-            }, true);
+            });
 
         }
 

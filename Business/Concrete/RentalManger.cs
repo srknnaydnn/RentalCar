@@ -23,9 +23,9 @@ namespace Business.Concrete
             if (rental.ReturnDate != null)
             {
                 _rentalDal.Add(rental);
-                return new SuccessResult(true, Message.AddSuccessRental);
+                return new SuccessResult(Message.AddSuccessRental);
             }
-            return new SuccessResult(false, Message.AddUnSuccessRental);
+            return new SuccessResult(Message.AddUnSuccessRental);
         }
     }
 }

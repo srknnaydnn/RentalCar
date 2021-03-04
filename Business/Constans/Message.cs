@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constans
@@ -21,12 +22,12 @@ namespace Business.Constans
         public static string AddUnSuccessRental = "Araba Şuan Kiralık";
         public static string AddSuccessCarImages = "Resim Eklendi";
         public static string CarImagesLimited = "Bir Arcın Beşten Fazla Resmi Olamaz";
-
-
-
-
-
-
+        public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string ErrorPassword = "Parola Yanlış";
+        public static string UserRegistered = "Kullanıcı Kaydı Başarılı";
+        public static string AccessTokenCreated = "Token Oluşturuldu";
+        public static string AuthorizationDenied = "Yetkiniz Yok";
+        public static string UserAlreadyExists = "kullanıcı bulunamadı";
 
     }
 }

@@ -27,27 +27,27 @@ namespace Business.Concrete
 
             if(customer.UserId==null && customer.CompanyName == null)
             {
-                return new ErrorResult(false,"Hata");
+                return new ErrorResult("Hata");
             }
             _customerDal.Add(customer);
 
-            return new SuccessResult(true, Message.CustomerAddSuccess);
+            return new SuccessResult(Message.CustomerAddSuccess);
         }
 
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
-            return new SuccessResult(true, Message.CustomerDeleteSuccess);
+            return new SuccessResult(Message.CustomerDeleteSuccess);
         }
 
         public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),true,Message.CustomersListSuccess);
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Message.CustomersListSuccess);
         }
 
         public IDataResult<Customer> GetByID(int id)
         {
-            return new ErrorDataResult<Customer>(_customerDal.Get(p=>p.CustomerId==id), false, Message.CustomerListUnSuccess);
+            return new ErrorDataResult<Customer>(_customerDal.Get(p=>p.CustomerId==id), Message.CustomerListUnSuccess);
         }
     }
 }
