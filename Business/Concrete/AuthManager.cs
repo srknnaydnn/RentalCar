@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspect.NewFolder.Autofac.Validation;
 using Core.Entities;
 using Core.Utilities;
 using Core.Utilities.Jwt.Hashing;
@@ -28,7 +30,10 @@ namespace Business.Concrete
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateAccessToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Message.AccessTokenCreated);
+
         }
+
+        [ValidationAspect(typeof(UserValidator))]
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
@@ -43,7 +48,7 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(Message.ErrorPassword);
             }
 
-            return new SuccessDataResult<User>(userToCheck, "giriş başarılı");
+            return new SuccessDataResult<User>(userToCheck, Message.UserToLogin);
 
         }
 
@@ -64,6 +69,8 @@ namespace Business.Concrete
             _userService.Add(user);
             return new SuccessDataResult<User>(user, Message.UserRegistered);
         }
+
+        [ValidationAspect(typeof(UserValidator))]
 
         public IResult UserExists(string email)
         {

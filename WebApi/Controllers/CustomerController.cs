@@ -35,10 +35,38 @@ namespace WebApi.Controllers
         public IActionResult GetAll()
         {
             var result = _customerService.GetAll();
-            return Ok(result);
+            if (result!=null)
+            {
+                return Ok(result);
+
+            }
+            return BadRequest(result.Data);
+        }
+        [HttpGet("getbyid")]
+
+        public IActionResult GetById(int id)
+        {
+            var result = _customerService.GetByID(id);
+            if (result!=null)
+            {
+                return Ok(result);
+
+            }
+            return BadRequest(result);
         }
 
-       
-        
+        [HttpPost("delete")]
+        public IActionResult Delete(Customer  customer)
+        {
+            var result = _customerService.Delete(customer);
+            if (result.Success)
+            {
+                return Ok(result);
+
+            }
+            return BadRequest(result.Success);
+        }
+
+
     }
 }

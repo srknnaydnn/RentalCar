@@ -10,8 +10,8 @@ namespace Business.DependencyResolvers.FluentValidation
     {
         public CustomerValidator()
         {
-            RuleFor(p => p.UserId).NotEmpty().WithMessage("s");
-            RuleFor(p => p.CompanyName).NotEmpty();
+            RuleFor(p => p.UserId).NotEmpty().WithMessage("selam");
+            RuleFor(p => p.CompanyName).NotEmpty().WithMessage("selam");
             
         }
     }

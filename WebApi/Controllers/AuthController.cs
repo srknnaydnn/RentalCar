@@ -26,7 +26,7 @@ namespace WebApi.Controllers
             var userToLogin = _authService.Login(userForLoginDto);
             if (userToLogin==null)
             {
-                return BadRequest(userToLogin);
+                return BadRequest(userToLogin.Data);
             }
 
             var result = _authService.CreateAccessToken(userToLogin.Data);

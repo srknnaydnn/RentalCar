@@ -15,16 +15,17 @@ namespace Core.Utilities.Jwt.Hashing
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
+
         public static bool VerifyPasswordHash(string password, byte[] passwordSalt, byte[] passwordHash)
         {
 
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
-                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+               var comutedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
                 for (int i = 0; i < passwordHash.Length; i++)
                 {
-                    if (passwordHash[i] != passwordSalt[i])
+                    if (comutedHash[i] != passwordHash[i])
                     {
                         return false;
                     }
@@ -33,6 +34,7 @@ namespace Core.Utilities.Jwt.Hashing
                 return true;
             }
         }
+
 
     }
 }

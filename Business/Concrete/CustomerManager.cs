@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constans;
+using Business.DependencyResolvers.FluentValidation;
+using Core.Aspect.Autofac.Caching;
 using Core.Aspect.NewFolder.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities;
@@ -20,8 +23,9 @@ namespace Business.Concrete
         {
             _customerDal = customerDal;
         }
-
-        [ValidationAspect(typeof(ValidationTool))]
+        [CacheRemoveAspect("ICustomerService.Get")]
+        [SecuredOperation("admin,customer.add")]
+        [ValidationAspect(typeof(CustomerValidator))]
         public IResult Add(Customer customer)
         {
 
@@ -33,21 +37,23 @@ namespace Business.Concrete
 
             return new SuccessResult(Message.CustomerAddSuccess);
         }
+        [SecuredOperation("moderator")]
 
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
             return new SuccessResult(Message.CustomerDeleteSuccess);
         }
-
+        [CacheAspect]
         public IDataResult<List<Customer>> GetAll()
         {
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Message.CustomersListSuccess);
         }
 
+        [CacheAspect]
         public IDataResult<Customer> GetByID(int id)
         {
-            return new ErrorDataResult<Customer>(_customerDal.Get(p=>p.CustomerId==id), Message.CustomerListUnSuccess);
+            return new SuccessDataResult<Customer>(_customerDal.Get(p=>p.CustomerId==id), Message.CustomerListSuccess);
         }
     }
 }

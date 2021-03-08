@@ -7,7 +7,7 @@ namespace Business.Constans
 {
     public static class Message
     {
-        public static string AddSuccess = "Araba Ekleme İşlemi bşarılı";
+        public static string AddSuccess = "Araba Ekleme İşlemi başarılı";
         public static string AddUnSuccess = "Araba Ekleme İşlemi Başarısız";
         public static string CustomerAddSuccess = "Müşteri Ekleme İşlemi Başarılı";
         public static string CustomerAddUnSuccess = "Müşteri Ekleme İşlemi Başarısız";
@@ -16,6 +16,7 @@ namespace Business.Constans
         public static string CustomersListSuccess = "Müşteriler Listelendi";
         public static string CustomersListUnSuccess = "Müşteri Listelenmedi";
         public static string CustomerListUnSuccess = "Müşteri Bulunamadı";
+        public static string CustomerListSuccess = "Müşteri Listelendi";
         public static string UserSuccessList = "Kullanıcılar listelendi";
         public static string UserAddSuccess = "Kullanıcı Ekleme İşlemi ";
         public static string AddSuccessRental = "Araba Tekrar Eklendi";
@@ -23,6 +24,8 @@ namespace Business.Constans
         public static string AddSuccessCarImages = "Resim Eklendi";
         public static string CarImagesLimited = "Bir Arcın Beşten Fazla Resmi Olamaz";
         public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string UserToLogin = "giriş başarılı";
+
         public static string ErrorPassword = "Parola Yanlış";
         public static string UserRegistered = "Kullanıcı Kaydı Başarılı";
         public static string AccessTokenCreated = "Token Oluşturuldu";

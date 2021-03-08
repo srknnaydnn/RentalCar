@@ -1589,6 +1589,7 @@
           "Castle.Core": "4.4.1",
           "FluentValidation": "9.5.1",
           "LinqKit.Microsoft.EntityFrameworkCore": "5.0.23",
+          "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.3",
           "Microsoft.Extensions.Configuration": "5.0.0",
           "Microsoft.Extensions.Configuration.Binder": "5.0.0",
@@ -1602,7 +1603,6 @@
         "dependencies": {
           "Core": "1.0.0",
           "Entities": "1.0.0",
-          "LinqKit.Microsoft.EntityFrameworkCore": "5.0.23",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.3"
         },
         "runtime": {
